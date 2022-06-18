@@ -85,6 +85,8 @@ func (r Reader) Extract() (int, error) {
 	r.File.Seek(0, 0)
 
 	// loop until end of file was reached
+	fmt.Println("---------file extract---------")
+	
 	iteration := 0;
 	for {
 		iteration++;
