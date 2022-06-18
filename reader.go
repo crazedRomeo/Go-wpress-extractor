@@ -115,17 +115,17 @@ func (r Reader) Extract() (int, error) {
 
 		err = os.MkdirAll(path.Dir(pathToFile), 0777)
 		if err != nil {
+			fmt.Println("---------err to dir the file---------")
 			fmt.Println(err)
 			continue
 			return r.NumberOfFiles, err
 		}
 
 		// try to open the file
-		
-
 
 		file, err := os.Create(pathToFile)
 		if err != nil {
+			fmt.Println("---------err to open the file---------")
 			continue
 			return r.NumberOfFiles, err
 		}
