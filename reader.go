@@ -126,7 +126,7 @@ func (r Reader) Extract() (int, error) {
 
 		// try to open the file
 
-		file, err := os.Create(pathToFile)
+		/*file, err := os.Create(pathToFile)
 		if err != nil {
 			fmt.Println("---------err to open the file---------")
 			r.NumberOfFiles++
@@ -158,7 +158,7 @@ func (r Reader) Extract() (int, error) {
 			if err != nil {
 				return r.NumberOfFiles, err
 			}
-		}
+		}*/
 
 		file.Close()
 
