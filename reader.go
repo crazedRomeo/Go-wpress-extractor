@@ -80,8 +80,10 @@ func (r Reader) Extract() (int, error) {
 	r.File.Seek(0, 0)
 
 	// loop until end of file was reached
+	fmt.Println("read start")
 	for {
 		// read header block
+		fmt.Println("read header block")
 		block, err := r.GetHeaderBlock()
 		if err != nil {
 			return 0, err
@@ -100,7 +102,8 @@ func (r Reader) Extract() (int, error) {
 		h.PopulateFromBytes(block)
 
 		pathToFile := path.Clean("." + string(os.PathSeparator) + string(bytes.Trim(h.Prefix, "\x00")) + string(os.PathSeparator) + string(bytes.Trim(h.Name, "\x00")))
-
+		fmt.Println("pathToFile")
+		fmt.Println(pathToFile)
 		err = os.MkdirAll(path.Dir(pathToFile), 0777)
 		if err != nil {
 			fmt.Println(err)
@@ -109,6 +112,7 @@ func (r Reader) Extract() (int, error) {
 		}
 
 		// try to open the file
+		fmt.Println("try to open the file")
 		file, err := os.Create(pathToFile)
 		if err != nil {
 			return r.NumberOfFiles, err
