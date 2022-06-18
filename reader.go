@@ -83,7 +83,7 @@ func (r Reader) Extract() (int, error) {
 	fmt.Println("read start")
 	for {
 		// read header block
-		fmt.Println("read header block")
+		fmt.Println("---------read header block---------")
 		block, err := r.GetHeaderBlock()
 		if err != nil {
 			return 0, err
@@ -103,7 +103,9 @@ func (r Reader) Extract() (int, error) {
 
 		pathToFile := path.Clean("." + string(os.PathSeparator) + string(bytes.Trim(h.Prefix, "\x00")) + string(os.PathSeparator) + string(bytes.Trim(h.Name, "\x00")))
 
+		fmt.Println("--------- check pathToFile---------")
 		if runtime.GOOS == "windows" {
+			fmt.Println("---------pathToFile on Win---------")
 		    sep := fmt.Sprintf("%c", PATH_SEPARATOR_UNIX)
 		    pathToFile = strings.Replace(pathToFile,"\\",sep,-1)
 		    fmt.Println(pathToFile)
