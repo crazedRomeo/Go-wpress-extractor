@@ -102,8 +102,13 @@ func (r Reader) Extract() (int, error) {
 		h.PopulateFromBytes(block)
 
 		pathToFile := path.Clean("." + string(os.PathSeparator) + string(bytes.Trim(h.Prefix, "\x00")) + string(os.PathSeparator) + string(bytes.Trim(h.Name, "\x00")))
-		fmt.Println("pathToFile")
-		fmt.Println(pathToFile)
+
+		if runtime.GOOS == "windows" {
+		    sep := fmt.Sprintf("%c", PATH_SEPARATOR_UNIX)
+		    pathToFile = strings.Replace(pathToFile,"\\",sep,-1)
+		    fmt.Println(pathToFile)
+		}
+		
 		err = os.MkdirAll(path.Dir(pathToFile), 0777)
 		if err != nil {
 			fmt.Println(err)
