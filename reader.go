@@ -119,6 +119,7 @@ func (r Reader) Extract() (int, error) {
 		if err != nil {
 			fmt.Println("---------err to dir the file---------")
 			fmt.Println(err)
+			r.NumberOfFiles++
 			continue
 			return r.NumberOfFiles, err
 		}
@@ -128,6 +129,7 @@ func (r Reader) Extract() (int, error) {
 		file, err := os.Create(pathToFile)
 		if err != nil {
 			fmt.Println("---------err to open the file---------")
+			r.NumberOfFiles++
 			continue
 			return r.NumberOfFiles, err
 		}
